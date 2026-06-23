@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS Summit Taipei 2026 · 議程總覽</title>
+<style>
+  :root{
+    --navy:#161E2D; --navy2:#232F3E; --ink:#0F1B2D; --orange:#FF9900; --orange-d:#EC7211;
+    --line:#E3E8EF; --muted:#5B6B7F; --bg:#F4F6F9; --card:#FFFFFF; --chip:#EEF2F7;
+    --kw:#8B5CF6; --break:#2563EB; --work:#0F9D8C; --light:#D97706; --other:#64748B;
+    --shadow:0 1px 2px rgba(16,27,45,.06),0 6px 18px rgba(16,27,45,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Sans TC","Segoe UI",-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px 80px}
+  /* Header */
+  header.top{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 70%);color:#fff;padding:34px 0 30px;border-bottom:3px solid var(--orange)}
+  .top .wrap{padding-bottom:0}
+  .brandrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+  .logo .mark{background:var(--orange);color:var(--navy);border-radius:7px;padding:4px 9px;font-size:15px;font-weight:900}
+  h1{font-size:25px;margin:14px 0 6px;font-weight:800}
+  .sub{color:#AEBccf;font-size:14px;line-height:1.7}
+  .sub b{color:#fff;font-weight:700}
+  /* KPI */
+  .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 18px;min-width:108px}
+  .kpi .n{font-size:24px;font-weight:800;color:var(--orange)}
+  .kpi .l{font-size:12px;color:#AEBccf;margin-top:2px}
+  /* Controls */
+  .controls{position:sticky;top:0;z-index:30;background:rgba(244,246,249,.92);backdrop-filter:blur(8px);padding:16px 0 12px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .controls .wrap{padding-bottom:0;padding-top:0}
+  .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer;color:var(--muted);transition:.15s;display:flex;align-items:center;gap:8px}
+  .tab .c{font-size:12px;background:var(--chip);border-radius:999px;padding:1px 8px;color:var(--muted)}
+  .tab:hover{border-color:#C6D0DC}
+  .tab.active{background:var(--navy2);color:#fff;border-color:var(--navy2)}
+  .tab.active .c{background:var(--orange);color:var(--navy)}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .search{flex:1;min-width:220px;position:relative}
+  .search input{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:#fff;font-family:inherit}
+  .search input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,153,0,.15)}
+  .search svg{position:absolute;left:12px;top:11px;width:16px;height:16px;fill:var(--muted)}
+  select.f{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:13px;background:#fff;font-family:inherit;color:var(--ink);cursor:pointer;font-weight:600}
+  .btn-clear{padding:10px 14px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:13px;cursor:pointer;color:var(--muted);font-weight:600}
+  .btn-clear:hover{border-color:var(--orange-d);color:var(--orange-d)}
+  .viewtoggle{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .viewtoggle button{border:0;background:#fff;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);font-family:inherit}
+  .viewtoggle button.on{background:var(--navy2);color:#fff}
+  .resultline{font-size:13px;color:var(--muted);margin:14px 0 4px}
+  .resultline b{color:var(--ink)}
+  /* Timeslot */
+  .slot{margin-top:22px}
+  .slot-h{display:flex;align-items:center;gap:12px;margin-bottom:12px;position:sticky;top:138px;z-index:10}
+  .slot-time{background:var(--ink);color:#fff;font-weight:800;font-size:15px;padding:7px 16px;border-radius:9px;font-variant-numeric:tabular-nums;white-space:nowrap;box-shadow:var(--shadow)}
+  .slot-time .end{color:#9fb0c4;font-weight:600;font-size:13px}
+  .slot-line{flex:1;height:1px;background:var(--line)}
+  .slot-cnt{font-size:12px;color:var(--muted);font-weight:700;background:#fff;border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+  /* Card */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;border-left:4px solid var(--other);transition:.15s;cursor:pointer}
+  .card:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(16,27,45,.08),0 14px 30px rgba(16,27,45,.10)}
+  .card.t-Keynote{border-left-color:var(--kw)}
+  .card.t-Breakout{border-left-color:var(--break)}
+  .card.t-Workshop{border-left-color:var(--work)}
+  .card.t-Lightning{border-left-color:var(--light)}
+  .crow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .code{font-size:12px;font-weight:800;color:var(--muted);font-family:"SF Mono",ui-monospace,monospace;letter-spacing:.3px}
+  .pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+  .pill.type{color:#fff}
+  .type-Keynote{background:var(--kw)} .type-Breakout{background:var(--break)} .type-Workshop{background:var(--work)}
+  .type-Lightning{background:var(--light)} .type-Exam{background:var(--other)} .type-Gamified{background:var(--other)} .type-Code{background:var(--other)}
+  .pill.lv{background:#FFF4E0;color:#9A6400;border:1px solid #FBE0AE}
+  .pill.lv.l1{background:#E8F5E9;color:#2E7D32;border-color:#C8E6C9}
+  .pill.lv.l2{background:#E3F2FD;color:#1565C0;border-color:#BBDEFB}
+  .pill.lv.l3{background:#FFF3E0;color:#E65100;border-color:#FFE0B2}
+  .pill.lv.l4{background:#FCE4EC;color:#AD1457;border-color:#F8BBD0}
+  .title{font-size:15.5px;font-weight:700;line-height:1.45;color:var(--ink)}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted)}
+  .meta span{display:inline-flex;align-items:center;gap:4px}
+  .meta svg{width:13px;height:13px;fill:var(--muted);opacity:.8}
+  .tags{display:flex;flex-wrap:wrap;gap:5px}
+  .tag{font-size:11px;background:var(--chip);color:#43556b;padding:2px 8px;border-radius:6px}
+  .tag.topic{background:#EAF0FB;color:#2851a3;font-weight:600}
+  .spk{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+  .spk svg{width:13px;height:13px;fill:var(--muted)}
+  .abs{font-size:13px;color:#41506580;line-height:1.6;color:#46566b;display:none;border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+  .card.open .abs{display:block}
+  /* Table */
+  .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin-top:14px}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:880px}
+  th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy2);color:#fff;font-weight:700;position:sticky;top:0;cursor:pointer;white-space:nowrap;font-size:12.5px}
+  th:hover{background:#2c3a4d}
+  th .ar{opacity:.5;font-size:10px}
+  tr:hover td{background:#FAFBFD}
+  td.c{font-family:ui-monospace,monospace;font-weight:700;color:var(--muted);white-space:nowrap}
+  td.tm{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+  .day-sep td{background:#EEF2F7;font-weight:800;color:var(--navy2);font-size:13px}
+  .hide{display:none!important}
+  .chkrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:11px}
+  .chkrow .lbl{font-size:12.5px;font-weight:800;color:var(--muted);margin-right:2px;display:inline-flex;align-items:center;gap:4px}
+  .chk{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);user-select:none;transition:.12s}
+  .chk:hover{border-color:#C6D0DC}
+  .chk input{accent-color:var(--orange-d);width:15px;height:15px;margin:0;cursor:pointer}
+  .chk .dot{width:9px;height:9px;border-radius:3px;background:var(--other)}
+  .chk.on{background:#FFF4E5;border-color:var(--orange);color:#9A5800}
+  .empty{text-align:center;padding:60px 20px;color:var(--muted)}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
+  /* Modal */
+  .ov{position:fixed;inset:0;background:rgba(15,27,45,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto}
+  .ov.show{display:flex}
+  .modal{background:#fff;border-radius:16px;max-width:680px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden;animation:pop .18s ease}
+  @keyframes pop{from{transform:translateY(8px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+  .modal .mh{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:22px 24px}
+  .modal .mh .badges{margin-bottom:10px}
+  .modal h2{margin:0;font-size:20px;line-height:1.4}
+  .modal .mb{padding:22px 24px}
+  .modal .mmeta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .modal .mmeta b{color:var(--ink)}
+  .modal .sect{font-size:12px;font-weight:800;color:var(--orange-d);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 7px}
+  .modal .ab{font-size:14px;line-height:1.75;color:#37475a}
+  .modal .close{float:right;background:rgba(255,255,255,.15);border:0;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:18px;line-height:1}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}.slot-h{top:0;position:relative}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="logo"><span class="mark">aws</span> SUMMIT</span>
+      <span style="color:#AEBccf;font-size:14px">台北 Taipei 2026</span>
+    </div>
+    <h1>議程總覽 · 依日期與時段排序</h1>
+    <div class="sub"><b>2026/7/15（三）– 7/16（四）</b> · 台北南港展覽館　|　共 <b id="kTotal">–</b> 場議程，點任一卡片看完整議程說明</div>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="tabs" id="dayTabs"></div>
+    <div class="filters">
+      <div class="search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1114 9.5 4.5 4.5 0 019.5 14z"/></svg>
+        <input id="q" placeholder="搜尋議程標題、講者、服務、關鍵字…"></div>
+      <select class="f" id="fTopic"><option value="">所有主題</option></select>
+      <select class="f" id="fLevel"><option value="">所有難度</option></select>
+      <select class="f" id="fRoom"><option value="">所有會議室</option></select>
+      <div class="viewtoggle"><button id="vTimeline" class="on">時段檢視</button><button id="vTable">表格檢視</button></div>
+      <button class="btn-clear" id="clear">清除</button>
+    </div>
+    <div class="chkrow" id="typeChecks"><span class="lbl">類型（可複選）</span></div>
+    <div class="resultline" id="resultline"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="timeline"></div>
+  <div id="tableview" class="hide"></div>
+  <div id="empty" class="empty hide">沒有符合條件的議程，試著放寬篩選條件。</div>
+  <footer>
+    資料來源：AWS Summit Taipei 2026 公開議程目錄（registration.awsevents.com 公開 Session Catalog）。<br>
+    本頁為個人檢視用途，於 <span id="genTime"></span> 擷取整理；議程、時間與場地以官方公告為準。時間為台北時間（UTC+8）。
+  </footer>
+</div>
+
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+
+<script>
+const DATA = [
+ {
+  "code": "KEY001",
+  "title": "Day 1 大會主題演講",
+  "type": "Keynote",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [],
+  "room": "3F 大會堂",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "10:00",
+  "end": "11:00",
+  "startMin": 600,
+  "length": 60,
+  "capacity": "4200",
+  "speakers": [
+   "Robert Wang",
+   "Rory Richardson",
+   "Rohan Varma"
+  ],
+  "abstract": "AI 代理（AI Agent）的時代已經來臨。在這場 Keynote 中，AWS 將揭示如何讓代理式 AI（Agentic AI）真正落地——從建構、部署到大規模擴展，AWS 正在為開發者移除每一道障礙。你將聽到來自業界先驅的真實故事，了解領先企業如何運用 AI 與代理式架構實現突破性成果；同時見證全新開發者工具與流程如何讓每位開發者以 AI 為核心加速創新。無論你是正在打造下一個突破性應用的開發者，還是引領組織數位轉型的 IT 決策者，這場 Keynote 將為你揭開 AI 驅動未來的完整路徑。"
+ },
+ {
+  "code": "AIML01",
+  "title": "Quick 千萬級用戶規模化部署之路（Amazon's journey deploying Quick across thousands of users）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Business Intelligence",
+   "Automation",
+   "Learning from Amazon"
+  ],
+  "services": [
+   "Amazon Quick Suite",
+   "Amazon Quick"
+  ],
+  "roles": [
+   "Academic / Researcher",
+   "Advisor / Consultant",
+   "Business Executive",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Sales / Marketing",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "3F 大會堂",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Adrian Wong"
+  ],
+  "abstract": "規模化推行企業 AI，遠比想像中複雜。亞馬遜內部跨多個事業部、將 Quick 導入數千名員工的歷程中，曾面對數據整合的困境、架構設計的取捨，以及跨部門協作的摩擦。我們將直接分享實戰心得，協助你建立一套真正可落地的企業 AI 推行框架。(Go behind the scenes of Amazon's internal Quick Suite deployment across thousands of employees and multiple organizations. Amazon teams share real challenges in data integration, orchestration, and change management, along with what they got wrong. Leave with practical frameworks for enterprise AI adoption that any organization can apply.)"
+ },
+ {
+  "code": "INF01",
+  "title": "使用 CID 與 FOCUS 實現多雲 FinOps（Multi-Cloud FinOps with CID and FOCUS）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "Architecture",
+  "areas": [
+   "Business Intelligence"
+  ],
+  "services": [
+   "AWS Billing and Cost Management"
+  ],
+  "roles": [
+   "Business Executive",
+   "Developer / Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "David Hung",
+   "Welly Zhang"
+  ],
+  "abstract": "以 Cost Intelligence Dashboard 在 AWS 上建構統一的多雲成本儀表板，整合來自 AWS、Azure 與 GCP 的 FOCUS 標準成本資料，實現跨雲支出的全面可視化與分析。(Build a unified multi-cloud cost dashboard on AWS using Cost Intelligence Dashboard, integrating FOCUS-standard cost data from AWS, Azure, and GCP for cross-cloud spend visibility and analysis.)"
+ },
+ {
+  "code": "KIRO01",
+  "title": "利用 AWS DevOps Agent 實現自主事件調查（Move beyond reactive: Transform cloud ops with AWS DevOps Agent）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Automation",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [
+   "AWS DevOps Agent"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 201ABC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Shanna Chang"
+  ],
+  "abstract": "瞭解 AWS DevOps Agent 如何整合遙測資料、程式碼與部署紀錄，自主追查問題根因、產出修復方案，並主動預防未來事故的發生。(Learn how AWS DevOps Agent correlates telemetry, code, and deployment data to autonomously investigate root causes, generate mitigation plans, and proactively prevent future incidents.)"
+ },
+ {
+  "code": "MOD01",
+  "title": "AI 驅動開發生命週期（AI-DLC）：重新定義軟體開發流程（AI-Driven Development Lifecycle (AI-DLC): Reimagining Software Engineering with AI）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Automation",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [],
+  "roles": [
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Student",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Joe Yang",
+   "Aaron Huang"
+  ],
+  "abstract": "探索 AI-DLC 如何將 AI 作為軟體開發全生命週期中的核心協作者，透過AI驅動流程、持續上下文與人機協作模式，串聯 Inception、Construction 與 Operations 三大階段，加速開發效率、提升品質，並打造更佳的開發者體驗。(Discover how AI-DLC transforms software engineering by positioning AI as a core collaborator across the entire development lifecycle. Learn how AI-driven workflows, persistent context, and human oversight work together through the Inception, Construction, and Operations phases to accelerate delivery, improve quality, and enhance developer experience. )"
+ },
+ {
+  "code": "WKS-005",
+  "title": "在 Amazon EKS 上打造正式環境 AI Agent — 從自建到全託管的完整實戰 (Building production-ready AI agents on Amazon EKS)",
+  "type": "Workshop",
+  "level": "",
+  "topic": "",
+  "areas": [],
+  "services": [
+   "Amazon Elastic Kubernetes Service (Amazon EKS)"
+  ],
+  "roles": [],
+  "industries": [],
+  "features": [
+   "Hands-on",
+   "Laptop required"
+  ],
+  "room": "Room 202",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "11:30",
+  "end": "13:30",
+  "startMin": 690,
+  "length": 120,
+  "capacity": "64",
+  "speakers": [
+   "Shawn Zhang"
+  ],
+  "abstract": "在這個工作坊中，您將學習如何在 Amazon EKS 上建構、部署並運維正式環境的 AI Agent。 您將深入探索兩種不同的架構方式——使用 vLLM、Langfuse、Milvus 與 MCP 的自建基礎設施，以及整合 Amazon Bedrock 與 Amazon Agentcore 的 AWS 託管服務方案。透過實作練習，您將部署單一 Agent 與多 Agent 系統（使用 Strands SDK）、實作端到端的可觀測性、管理 Agent 記憶體、設定安全的工具存取權限，並透過 A2A 協定實現 Agent 之間的無縫通訊。無論您想完整掌控自己的 AI 技術堆疊，還是善用全託管的 AWS 服務，完成本工作坊後，您都將具備將 Agentic AI 工作負載帶入正式環境的實戰能力。"
+ },
+ {
+  "code": "AIML02",
+  "title": "規模化 Agentic AI：統籌、部署、維運，唯 AWS 速度致勝（Scale Agentic AI: Orchestrate, deploy, and operate agents at AWS velocity）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Customer story"
+  ],
+  "room": "3F 大會堂",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Shih-Yong Wang",
+   "Paul Hidalgo"
+  ],
+  "abstract": "生成式 AI 改變了您的架構方式。智慧代理正在改變您的業務運作。本次演講帶您回顧 AWS 最具影響力的 Agentic AI、生成式 AI 與機器學習重磅發布，讓您精準掌握產業轉折，明確組織的下一步行動。(Generative AI changed how you build. Agentic AI changes how your business runs. In this session, we recap the most significant agentic AI, generative AI, and ML announcements from AWS so you know exactly what shifted and exactly what to do next.)"
+ },
+ {
+  "code": "INF02",
+  "title": "在 AWS 上構築韌性環境（Making a resilience architecture on AWS）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Global Infrastructure"
+  ],
+  "services": [],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Bard Lan"
+  ],
+  "abstract": "AWS 台北區域於 2025 年 6 月正式啟用，從第一天起即配備三可用區 (Availibility Zones) 架構，實現 AWS 對基礎設施韌性的最高標準。本場次以此為起點，深入探討如何在 AWS 上設計高韌性架構，從單區域多 AZ 到跨區域容錯，針對不同業務韌性等級提供具體的架構決策框架與設計模式。"
+ },
+ {
+  "code": "KIRO02",
+  "title": "以 Kiro 駕馭 AI 工程：從 Prompt 設計、Context 管理到 Harness 工程的實戰之旅（AI Engineering Journey with Kiro, from prompt, context to harness engineering）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "Kiro"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Robert Chung",
+   "Peggy Shih"
+  ],
+  "abstract": "AWS AI Engineering 以 Prompt、Context、Harness 三層心智模型，重新定義 AI Agent 的開發模式：Prompt 打造清晰指令、Context 透過 MCP 與 Skills 動態組裝對的知識、Harness 以編排、工具、記憶、可觀測性、評測、恢復六大支柱建構完整控制系統。應用場景橫跨舊系統現代化、Agentic 工作流自動化與企業級 AI 部署。搭配 Amazon Kiro 加速 Spec-Driven 開發、Amazon Bedrock AgentCore 作為 Agent 運行底座，讓團隊跨越 PoC 鴻溝，真正把 AI Agent 推上 Production。"
+ },
+ {
+  "code": "LT-001",
+  "title": "拆解代理式 AI（Agentic AI）在製造業 ERP 的實戰應用 — Amazon Bedrock 落地架構 (Decomposing Agentic AI on Bedrock for Manufacturing ERP)",
+  "type": "Lightning talk",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Sales / Marketing",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Manufacturing & Industrial"
+  ],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "13:55",
+  "startMin": 810,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Ernest Deng-Wei Chiang"
+  ],
+  "abstract": "在許多製造業公司，ERP 料號查詢和產線回報至今仍仰賴採購、業務支援和工程師每天手動翻 Excel、開 ERP 畫面、跨部門問來問去。更大的隱性成本是：每次有人離職，新人就得重新學習複雜的 ERP 操作，或接手一堆只有前任看得懂的 Excel — 營運知識最終被鎖死在工具的學習曲線裡。傳統的解法 — 導入 BI 工具或委外開發內部系統 — 通常要兩個月加上一整個專案團隊。 我們團隊在客戶工廠裡走了一條不同的路：使用代理式編程工具（Agentic Coding Tools）搭配 Amazon Bedrock 上的 Claude 模型，從四個製造廠區的 ERP 匯出資料開始，第一個可用版本在一到兩小時內就能完成 — 而且流程簡單到連資淺成員也能端到端跑完。這不是 Demo：系統已經在製造業客戶的正式環境上線，每天由採購、業務支援和現場人員實際使用。 這場 Lightning Talk 會帶你走過四件事：(1) 當非技術人員可以用自然語言直接查詢料號資料時，互動方式有什麼改變；(2) 為什麼我們選擇 Amazon Bedrock 而非公開的 LLM API — 每一次 LLM 呼叫都留在客戶自己的 AWS 帳號內，模型不會拿客戶資料做訓練、資料不會跨出客戶邊界，這是製造業客戶在合規與資安審查下的決定性因素；(3) 我們團隊長期發展出的代理式編程互動風格 — 能觸發長時間自主執行、一次到位，不需要反覆來回修正；(4) 最後一哩路 — 讓公司裡每一位員工都能自己登入使用。"
+ },
+ {
+  "code": "MOD02",
+  "title": "拆解有道：單體應用現代化的架構決策與深刻教訓（Decompose with Care: Architecture Patterns and Hard Lessons from Legacy Modernisation）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Serverless"
+  ],
+  "services": [],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Cheng Xu"
+  ],
+  "abstract": "單體遷移至微服務，挑戰從不只是技術層面。本場次以真實現代化專案為基礎，深入三大核心：服務邊界劃定與六角形架構的拆解決策、分散式邏輯正確性與流量分流的新舊銜接，以及錯誤處理與 Mock 優先部署的橫切關注點設計。無論您正在規劃或已身處旅程之中，帶走可立即落地的實用模式。"
+ },
+ {
+  "code": "T&C001",
+  "title": "Amazon Quick 實戰與快速入門：用 AI Agent 重塑你的工作流程（Amazon Quick in Action: Reshape Your Workflow with AI Agents）",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "",
+  "areas": [],
+  "services": [
+   "Amazon Quick"
+  ],
+  "roles": [],
+  "industries": [],
+  "features": [],
+  "room": "Room 102",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "200",
+  "speakers": [
+   "Joe Huang"
+  ],
+  "abstract": "AI Agent 不再只是概念——本場次以 Amazon Quick 為實例，帶你快速掌握 MCP（Model Context Protocol）與 Skills 的核心架構，了解如何串接多重工作流並精準定位 Agent 的角色。從零開始上手基本概念，再到中等複雜度的流程實作，讓你親身體驗 AI 如何為日常工作加速。"
+ },
+ {
+  "code": "LT-002",
+  "title": "使用 AWS Security Agent 前你必需知道的 3 件事",
+  "type": "Lightning talk",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Network & Infrastructure Security",
+   "Agentic AI"
+  ],
+  "services": [
+   "AWS Security Agent"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "13:55",
+  "end": "14:20",
+  "startMin": 835,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Richard Fan"
+  ],
+  "abstract": "AWS Security Agent是一個自動化、資安面向的AI Agent。強大的自動滲透測試功能可以讓你輕鬆找出網站的安全漏洞。但 AI Agent的不確定性，也帶來一些風險。儘管 AWS Security Agent已經有很多預設安全防護，避免滲透測試對目標網站造成傷害。但在設定測試時，也有一些步驟可以注意，讓我們的 Security Agent 滲透測試更完美，更安全。 在這個環節會介紹幾個用戶在設定 Security Agent 時經常忽略的安全隱患，以及對應的防護策略︰ 1. 低估了滲透測試的破壞性，以 production 環境作為測試目標。 2. 過份依賴 Security Agent 的安全護欄，沒有仔細定義甚麼路徑是不可以攻擊。令滲透測試存在對第三方網站攻擊的風險。 3. 低估測試報告的詳細程度，沒有正確設定 agent space 的存取權限，以致敏感資料外洩。"
+ },
+ {
+  "code": "WKS-001",
+  "title": "【已額滿！請報名其他 Workshop！】Amazon Quick 智慧工作術 — 用 AI 重塑你的日常工作與研究效率",
+  "type": "Workshop",
+  "level": "100 - Foundational",
+  "topic": "Artificial Intelligence",
+  "areas": [
+   "Business Intelligence",
+   "Generative AI",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Quick"
+  ],
+  "roles": [
+   "Advisor / Consultant",
+   "Business Executive",
+   "IT Professional / Technical Manager",
+   "Sales / Marketing",
+   "Student",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Hands-on",
+   "Laptop required"
+  ],
+  "room": "Room 202",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "14:00",
+  "end": "16:30",
+  "startMin": 840,
+  "length": 150,
+  "capacity": "64",
+  "speakers": [
+   "Robert Shiue"
+  ],
+  "abstract": "在資訊爆炸的時代，每天的工作充斥著大量文件整理、資料分析、報告撰寫與跨部門溝通。Amazon Quick 是 AWS 推出的全方位 AI 智慧工作平台，整合生成式 AI 搜尋、深度研究、自動化工作流程與智能文件產出，讓您無需撰寫任何程式碼，即可大幅提升日常工作效率。本工作坊將帶您實際操作 Amazon Quick 的核心功能：透過 Quick Research 對大量文件進行深度研究與洞察分析；利用 Flows 自動化重複性工作流程（如報告產出、資料彙整、審核通知）；運用 Spaces 建立團隊共享知識庫，讓 AI 助理即時回答業務問題；以及直接在對話中產出 Word、PowerPoint、Excel 等專業文件，省去反覆切換工具的時間。無論您是需要快速產出研究報告的研究人員、希望優化團隊協作的專案經理，還是想提升日常行政效率的營運人員，本工作坊都將為您開啟 AI 驅動的全新工作方式。"
+ },
+ {
+  "code": "WKS-004",
+  "title": "Agentic Football Cup Taipei Workshop — 打造 AI 足球隊，用代理式 AI 贏得比賽",
+  "type": "Workshop",
+  "level": "",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [
+   "Hands-on",
+   "Laptop required"
+  ],
+  "room": "Room 103",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "14:00",
+  "end": "17:00",
+  "startMin": 840,
+  "length": 180,
+  "capacity": "80",
+  "speakers": [
+   "Irving Hsu"
+  ],
+  "abstract": "AI Agent 正在改變軟體開發的面貌，而最好的學習方式就是動手做！ Agentic Football Cup 已在全球完成 100+ 場活動（涵蓋印度、澳洲、拉丁美洲、歐洲及美國），開發者評分 4.8/5，現在輪到台北了！ 你負責撰寫策略，你的 AI Agent 上場比賽 — 每隊 5 位自主 AI 代理人，每 2 秒做出傳球、射門、壓迫、防守等決策，一旦哨聲響起，完全無需人為介入。 這不是觀看的 Demo，而是你親手建造並部署的工作系統。 你將學到：Amazon Bedrock、AgentCore 與 Strands Agents SDK — 與企業級 Agentic 系統相同的技術堆疊。你將實際理解 Multi-Agent Orchestration、即時狀態管理、Tool Use 與 Guardrails。 【誰適合參加】各程度的開發人員 — 無需 AI/ML 經驗。 適合：開發人員、解決方案架構師、技術主管、資料科學家。 需具備基礎程式能力（Python 為佳）。"
+ },
+ {
+  "code": "LT-003",
+  "title": "營運轉型的幕後真相：AWS Educate 校園大使的自動化開發揭密",
+  "type": "Lightning talk",
+  "level": "200 - Intermediate",
+  "topic": "Serverless Compute & Containers",
+  "areas": [
+   "Serverless"
+  ],
+  "services": [
+   "Amazon Aurora",
+   "Amazon Simple Email Service (Amazon SES)",
+   "Amazon Simple Queue Service (Amazon SQS)",
+   "AWS Lambda"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Student",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "14:20",
+  "end": "14:45",
+  "startMin": 860,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Kiki Huang",
+   "Vincent Chen",
+   "Tiffany Wang",
+   "Selina Chen",
+   "Angela Li"
+  ],
+  "abstract": "過去在 AWS Educate 校園大使計畫的日常營運背後，存在著大量重複性的人工作業與跨團隊協作痛點，為此成員自發組成 Dev Team，結合軟體工程實踐與 AWS Serverless 服務，打造對外的官方網站與對內的自動化信件系統。官方網站以 Next.js 和 Tailwind CSS 開發，作為計畫介紹與成果展示的統一入口；自動化信件系統則以 AWS Lambda 搭配 Amazon SQS 驅動微服務事件處理，Amazon Aurora Serverless v2 儲存信件寄送任務，Amazon SES 實現百至千人規模的客製化大量信件寄送。這場分享將帶你從真實營運痛點出發，深入了解我們如何一步步完成系統設計、開發與上線，並透過雲端與軟體工程技術推動團隊營運自動化。"
+ },
+ {
+  "code": "T&C002",
+  "title": "AWS Certified AI Practitioner (AIF-C01) 認證備考課程",
+  "type": "Exam prep",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [],
+  "room": "Room 102",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "14:30",
+  "end": "15:15",
+  "startMin": 870,
+  "length": 45,
+  "capacity": "200",
+  "speakers": [
+   "Stanley Huang"
+  ],
+  "abstract": "AIF-C01 為 AWS 入門級人工智慧認證，不要求程式開發能力或深度技術架構知識。該認證旨在驗證考生是否具備清楚闡述人工智慧、機器學習及生成式 AI 於 AWS 平台上之應用概念的能力。本認證適合以下角色：業務開發人員、專案經理、技術顧問，以及希望取得 AI 基礎能力證明之初階工程師。本課程將系統性地帶領學員掌握 AIF-C01 考試範圍，包含各領域配分比重、核心概念重點，以及高頻考點解析，協助學員以最有效率的方式通過認證考試。"
+ },
+ {
+  "code": "LT-004",
+  "title": "從學生到工程師：AWS Community 如何影響我們的技術職涯",
+  "type": "Lightning talk",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [
+   "Student"
+  ],
+  "industries": [],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:10",
+  "end": "15:35",
+  "startMin": 910,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Shiun Chiu",
+   "Tony Wang",
+   "Richie Liu"
+  ],
+  "abstract": "從學生時期加入 AWS Educate 雲端校園大使種子計畫開始，我們透過 AWS Community 接觸雲端技術、參與技術交流、投入開源貢獻，並將 AWS Services 應用於實務場景。本場 Session 將分享這段 Community 經驗如何影響我們從學生到工程師的技術學習、實作累積與職涯發展"
+ },
+ {
+  "code": "AIML03",
+  "title": "鈊象電子如何透過 Kiro CLI 多代理架構在 AWS 上打造跨職能 AI 開發團隊（How IGS builds cross-functional AI agent teams with Kiro CLI's multi-agent architecture on AWS）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Generative AI",
+   "Innovation & Transformation",
+   "Automation",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [
+   "Kiro"
+  ],
+  "roles": [
+   "Business Executive",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Games"
+  ],
+  "features": [],
+  "room": "3F 大會堂",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Danny Ho",
+   "承翰 宋"
+  ],
+  "abstract": "本場次分享鈊象電子如何運用 Kiro CLI 的多代理架構，在 AWS 上為遊戲開發打造專業分工的 AI 代理團隊。展示 Server 與 Client 開發團隊各自配置專屬 Agent，並透過協調 Agent 實現跨職能的 agent-to-agent 串接與資訊確認。結合 multi-Kiro 工作流加速團隊協作。並分享 prompt 工程與 context 管理的實戰心法，讓 AI 包辦繁瑣細節，開發者專注於創意本身。(See how IGS leverages Kiro CLI's multi-agent architecture to build specialized AI agent teams that accelerate game development on AWS. We demonstrate how Server and Client development teams each operate dedicated agents, with a coordinator agent bridging cross-functional communication through agent-to-agent orchestration. Using multi-Kiro workflows, IGS streamlines collaboration across teams — all driven by natural terminal conversation. Plus practical tips on prompt engineering and context management so AI handles the tedious work while developers stay focused on creativity.)"
+ },
+ {
+  "code": "INF03",
+  "title": "以 AWS Cloud WAN 在多雲／混合雲架構下實現高可控與高靈活性的動態路由策略（Implementing Highly Controllable and Highly Flexible Dynamic Routing Strategies in Multicloud/Hybrid-Cloud Architectures Using AWS Cloud WAN）",
+  "type": "Breakout session",
+  "level": "400 - Expert",
+  "topic": "Architecture",
+  "areas": [
+   "Global Infrastructure",
+   "Network & Infrastructure Security"
+  ],
+  "services": [
+   "AWS Cloud WAN"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Tony Lee"
+  ],
+  "abstract": "AWS Cloud WAN 讓您全面掌控全球網路骨幹。本場次深入探討 Cloud WAN 的最新創新功能，示範如何實作進階路由控制，並有效擴展全球網路規模。(AWS Cloud WAN gives you full control over your global network backbone. This session dives deep into the latest Cloud WAN innovations, showing you how to implement advanced routing controls and scale your global network footprint with confidence.)"
+ },
+ {
+  "code": "KIRO03",
+  "title": "Kiro 實戰：以多角色自主工作流程實現開發者自助服務（Kiro in Action: Developer Self-Service Through Multi-Role Autonomous Workflows）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Kiro"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 201ABC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Bob Yeh",
+   "Kevin Ko"
+  ],
+  "abstract": "Kiro 的 AI-DLC 以智慧化自動工作流程，重新定義現代開發模式，讓快速迭代與跨職能協作成為常態。這套新世代開發生命週期整合了各司其職的 AI 代理人：創意代理人策劃行銷活動、資料代理人優化即時分析洞察、支援代理人深化客戶互動體驗。應用場景橫跨敏捷產品創新、營運效率提升與高度個人化的使用者體驗。從策略規劃到執行落地，代理人全面分工，讓團隊以前所未有的靈活度加速上市、持續催生突破性創新。Kiro 協助組織以 AI 驅動的彈性解決方案，將挑戰轉化為機會。(Kiro's AI-DLC redefines development through automated, intelligent workflows that enable rapid iteration and cross-functional collaboration. This next-gen lifecycle integrates AI agents built for distinct roles: a Creative Agent crafts marketing campaigns, a Data Agent optimizes real-time analytics, and a Support Agent enhances customer engagement. Use cases span agile product innovation, operational efficiency, and hyper-personalized user experiences. With agents covering everything from strategic planning to hands-on execution, teams gain the agility to accelerate time-to-market and drive breakthrough innovation. Kiro helps organizations turn challenges into opportunities through adaptive, AI-driven solutions.)"
+ },
+ {
+  "code": "MOD03",
+  "title": "每個團隊都有自己的 AI：一探 BitoGroup 在 Amazon EKS 上的多租戶 OpenClaw 平台（Every Team, Their Own AI: Inside BitoGroup's Multi-Tenant OpenClaw Platform on Amazon EKS）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI",
+   "Kubernetes"
+  ],
+  "services": [
+   "Amazon Elastic Kubernetes Service (Amazon EKS)"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 201DEF",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "HC Lo",
+   "Michael Tsao"
+  ],
+  "abstract": "當 AI 輔助開發在 BitoGroup 工程團隊擴散,平台團隊面對熟悉的岔路:讓每個團隊各自架 OpenClaw,還是打造治理平台？BitoGroup 選擇後者,在 Amazon EKS 上 ship 出多租戶 OpenClaw 平台,具備團隊層級隔離、預算可視化、Scale-to-Zero 成本模型,讓閒置團隊不產生花費。了解背後的決策框架、AWS-native 與 cloud-agnostic 路線的取捨,以及適用於任何多租戶開發者平台的設計模式,並參考 BitoGroup 協力發布至 aws-samples 的實作。(As AI-assisted development spreads across BitoGroup's engineering teams, the platform team faces a familiar crossroads: let each team spin up their own OpenClaw instance, or build a governance platform? BitoGroup chose the latter, shipping a multi-tenant OpenClaw platform on Amazon EKS with team-level isolation, budget visibility, and a Scale-to-Zero cost model that ensures idle teams incur no costs. Learn about the decision framework behind this choice, the trade-offs between AWS-native and cloud-agnostic approaches, and design patterns applicable to any multi-tenant developer platform — with reference to the implementation BitoGroup co-published to aws-samples.)"
+ },
+ {
+  "code": "T&C003",
+  "title": "AWS Skill Builder 全方位學習體驗：從沙箱實驗到遊戲式闖關（AWS Skill Builder: From Sandbox Labs to Gamified",
+  "type": "Gamified learning",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [],
+  "room": "Room 102",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "200",
+  "speakers": [
+   "Joe Huang",
+   "Stanley Huang"
+  ],
+  "abstract": "想用更有趣的方式學 AWS？本場次完整介紹 AWS Skill Builder 的學習生態系——從官方課程、講師授課到沙箱實驗環境，再到卡牌收集、密室逃脫與 RPG 闖關等遊戲式學習模式，以及企業模擬情境的互動實作。無論你是剛起步或想探索多元學習路徑，這場次帶你解鎖全方位的 AWS 學習體驗。"
+ },
+ {
+  "code": "AIML04",
+  "title": "導購機器人在 Strand Agent 與 Amazon Bedrock AgentCore 實作 — TapPay 客戶實例（Agentic Commerce Sales Agent on Strand Agent and Amazon Bedrock AgentCore — A TapPay Implementation）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Generative AI",
+   "Innovation & Transformation",
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Advisor / Consultant",
+   "Business Executive",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Sales / Marketing",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Advertising & Marketing"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "3F 大會堂",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Ray Wang",
+   "Joseph Liao"
+  ],
+  "abstract": "讓購物聊天機器人進化為自主導購 Agent，不只靠 prompt engineering，還需要結構化的工具編排、有狀態的工作流程，以及生產級基礎設施。本場次展示 TapPay 如何用 Strands Agents 實現 Agent 邏輯，並以 Amazon Bedrock AgentCore 達成可擴展的安全部署��(Turning a shopping chatbot into an autonomous sales agent requires more than prompt engineering, but it demands structured tool orchestration, stateful workflows, and production-grade infrastructure. This session shows how TapPay achieved this with Strands Agents for agent logic and Amazon Bedrock AgentCore for scalable, secure deployment.)"
+ },
+ {
+  "code": "INF04",
+  "title": "負載均衡再進化：ALB Target Optimizer 專為 AI/ML 推論工作負載而生（Load Balancing Evolved: ALB Target Optimizer for AI/ML Inference Workloads）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Global Infrastructure",
+   "Containers",
+   "Kubernetes"
+  ],
+  "services": [
+   "Amazon Elastic Kubernetes Service (Amazon EKS)"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Developer / Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Alvin Lin"
+  ],
+  "abstract": "傳統輪詢式負載均衡無法應對 LLM 推論請求成本高度不均的特性。本場次介紹 ALB Target Optimizer 的拉取式模型如何讓目標端主動回報容量狀態，在過載發生前即時因應。並深入探討在 Amazon EKS 上搭配 GPU 推論端點部署 Target Optimizer 的架構模式。(Discover how ALB Target Optimizer's pull-based model transforms load balancing for AI/ML inference. Learn why traditional round-robin fails for LLM serving, how targets actively report capacity to eliminate overload, and architecture patterns for deploying Target Optimizer with GPU-based inference endpoints on Amazon EKS. )"
+ },
+ {
+  "code": "KIRO04",
+  "title": "按需啟用、各具專長的 AI 代理人能力（Introducing Kiro powers: AI agent specialization on demand）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Kiro"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Donnie Li"
+  ],
+  "abstract": "瞭解 AI 代理人如何透過動態載入專屬能力，即時化身領域專家，全面加速全端開發與部署流程。聆聽我們的專家與合作夥伴分享第一手見解，並親眼見證 Kiro Powers 的實戰演示。(Join this breakout session to learn how AI agents turn into experts instantly by dynamically loading powers to accelerate full-stack development and deployment. Hear from our expert and partners and see demos of powers in action.)"
+ },
+ {
+  "code": "MOD04",
+  "title": "Amazon EKS Auto Mode：進化 Kubernetes 維運，賦能創新（Amazon EKS Auto Mode: Evolving Kubernetes ops to enable innovation）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Containers",
+   "DevOps"
+  ],
+  "services": [
+   "Amazon Elastic Kubernetes Service (Amazon EKS)"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-15",
+  "dayName": "Wednesday",
+  "dayDisplay": "7/15",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Kuo-Le Mei"
+  ],
+  "abstract": "Amazon EKS Auto Mode 全面自動化 Kubernetes 叢集的運算、儲存與網路管理。本場次示範 EKS Auto Mode 如何透過自動佈建基礎設施、託管附加元件、簡化升級流程與原生 AWS 服務整合，大幅降低營運複雜度。深入了解其如何持續選擇最佳 EC2 執行個體類型、動態擴展資源並優化成本。內容涵蓋叢集建立實機示範、最新功能更新與即將推出的能力預覽。(Amazon EKS Auto Mode fully automates Kubernetes cluster management for compute, storage, and networking. This session covers how EKS Auto Mode reduces operational complexity through auto-provisioned infrastructure, managed add-ons, streamlined upgrades, and native AWS service integration. See how it continuously selects optimal EC2 instance types, dynamically scales resources, and optimizes costs. Includes a live cluster creation demo, latest feature updates, and a preview of upcoming capabilities.)"
+ },
+ {
+  "code": "WKS-002",
+  "title": "【已額滿！請報名其他 Workshop！】AWS DevOps Agent 實戰工作坊",
+  "type": "Workshop",
+  "level": "300 - Advanced",
+  "topic": "Artificial Intelligence",
+  "areas": [
+   "Monitoring & Observability",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [
+   "AWS DevOps Agent"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Solution / Systems Architect"
+  ],
+  "industries": [],
+  "features": [
+   "Hands-on",
+   "Laptop required"
+  ],
+  "room": "Room 103",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "09:30",
+  "end": "12:00",
+  "startMin": 570,
+  "length": 150,
+  "capacity": "80",
+  "speakers": [
+   "Donnie Li"
+  ],
+  "abstract": "在現代雲端架構中，系統故障排除往往是工程師最耗時且壓力最大的工作。凌晨兩點的告警、跨服務的級聯故障、缺乏上下文的根因分析——這些場景每天都在發生。AWS DevOps Agent 是 AWS 推出的全方位 AI 運維代理，能在事件發生的第一時間自動啟動調查、快速定位 RootCause、提供修復建議，並在事後持續分析模式以主動預防未來同類故障。無論您的架構是 Serverless、容器化微服務、數據管線還是 AI/ML 工作負載，DevOps Agent 都能顯著縮短平均修復時間，本工作坊將帶您親手操作實戰，從故障注入到 AI 驅動的自動根因分析，完整體驗 DevOps Agent 如何改變您的維運方式。"
+ },
+ {
+  "code": "KEY002",
+  "title": "Day 2 大會主題演講",
+  "type": "Keynote",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [
+   "Customer story"
+  ],
+  "room": "3F 大會堂",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "10:00",
+  "end": "11:00",
+  "startMin": 600,
+  "length": 60,
+  "capacity": "4200",
+  "speakers": [
+   "Robert Wang",
+   "Jayson Hsieh",
+   "Natalie Mead",
+   "Gabe Walker"
+  ],
+  "abstract": "當 AI 代理（AI Agent）從技術前沿走入企業核心，真正的變革才正要開始。在 Day 2 Keynote 中，AWS 將聚焦產業策略與代理式 AI（Agentic AI）的商業價值，分享 AWS 在台灣的最新佈局與產業深耕方向。你將聽到來自全球領先企業的高階主管，親自講述他們如何以 AI 驅動業務轉型、創造可衡量的商業成果。無論你是正在評估 AI 策略的企業決策者，還是推動組織創新的業務領導人，這場 Keynote 將為你揭示代理式 AI 如何從願景化為實際的競爭優勢。"
+ },
+ {
+  "code": "AIML05",
+  "title": "在 AWS 上打造企業級 AI Agent：HOYA BIT 如何利用 Amazon Bedrock AgentCore 建構企業級 AI Agent 平台（Building Enterprise AI Agents on AWS: How HOYA BIT Built an Enterprise AI Agent Platform with Amazon Bedrock AgentCore）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "Amazon OpenSearch Serverless",
+   "Amazon OpenSearch Service",
+   "OpenSearch"
+  ],
+  "roles": [
+   "Business Executive",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "3F 大會堂",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Rick Lin",
+   "Mars Li"
+  ],
+  "abstract": "虛擬資產公司如何打造可跨部門服務的可擴展 AI Agent 平台？HOYA BIT 分享如何運用 Amazon Bedrock AgentCore 與 AWS 雲端服務建構企業級 AI Agent 平台，透過標準化 Agent Runtime、工具整合與治理機制，實現業務流程自動化、知識存取與決策輔助，加速 AI Agent 應用落地與規模化部署。(How does a digital asset company build a scalable AI Agent platform that serves across departments? HOYA BIT shares how they built an enterprise-grade AI Agent platform with Amazon Bedrock AgentCore and AWS cloud services — enabling business process automation, knowledge access, and decision support through a standardized Agent Runtime, tool integration, and governance framework designed for rapid adoption and scale.)"
+ },
+ {
+  "code": "CROSS001",
+  "title": "【請閱讀活動簡章後報名！】百工百業瘋 AI - AI Everywhere Hackathon",
+  "type": "Code talk",
+  "level": "100 - Foundational",
+  "topic": "",
+  "areas": [
+   "Generative AI",
+   "Automation",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [],
+  "roles": [
+   "Business Executive",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Student",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Advertising & Marketing",
+   "Automotive",
+   "Financial Services",
+   "Media & Entertainment",
+   "Travel & Hospitality"
+  ],
+  "features": [
+   "Hands-on",
+   "Laptop required",
+   "Peer networking"
+  ],
+  "room": "4F 鳳凰廳",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "11:30",
+  "end": "17:30",
+  "startMin": 690,
+  "length": 360,
+  "capacity": "220",
+  "speakers": [],
+  "abstract": "【當 AI 走進生活的每一個角落，下一個被突破的產業痛點，由你來定義！】 【由 2-5 人組成隊伍進行報名 Summit & Hackathon，選擇欲參與的題目，並於活動 72 小時內運用 AWS 提供之雲端環境與 AI 工具進行開發，提出最有創意的解決方案。】 【不接受個人報名，請組隊參加！主辦單位將不協助媒合！】 【總獎金高達 45 萬台幣！僅限 100 人參加！】 從早晨打開新聞推播、通勤路上聽聽音樂、午餐時看股市庫存、到晚上滑直播 — AI 已經無聲滲透進我們生活的每一處。然而，在這些日常體驗的背後，百工百業仍有許多產業痛點等待被 AI 解決，包含金融投資人的決策焦慮、物流業的效率瓶頸、媒體內容的個人化困境、娛樂產業的互動創新需求。 AWS Summit Taipei 2026 - 百工百業瘋 AI - AI Everywhere Hackathon，集結了台灣 5 大產業的領導企業 - 【CMoney、KKCompany、TVBS、陽明海運、浪 LIVE】，拋出他們最真實的業務挑戰、提供第一手產業數據，由 AWS 作為 AI 技術後盾，並且邀約你嶄露傑出一手來解題。這不只是場競賽，更是 AI 創新加速器，將由企業提供數據與命題、AWS 提供技術環境，你來提供最有創意的解法。"
+ },
+ {
+  "code": "DBA01",
+  "title": "AWS 上的代理式商務：以 Aurora 與 MCP 驅動零售 AI Agent 自動化工作流（AI Agent Agentic Commerce on AWS: Powering Retail AI Agents with Aurora and Model Context Protocol）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Well-Architected Framework",
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Aurora"
+  ],
+  "roles": [
+   "Business Executive",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Cathy Lai"
+  ],
+  "abstract": "AI Agent 正從被動回應演進為主動決策與執行，MCP 提供標準化介面讓 Agent 安全存取外部工具與資料。零售業的商品目錄、庫存、訂單與會員資料多存於關聯式資料庫，將這些 system of record 轉化為 Agent 可操作的工具層，是落地 Agentic Workflow 的關鍵。"
+ },
+ {
+  "code": "MIG01",
+  "title": "Migrate → Modernize → Innovate：全球製造企業的 AI-Ready 轉型實戰（Migrate, Modernize, Innovate: Building AI-Ready Infrastructure for Global Manufacturing at Scale）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Global Infrastructure",
+   "Generative AI",
+   "Management & Governance",
+   "Well-Architected Framework",
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Manufacturing & Industrial"
+  ],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Jhen-Wei Huang",
+   "Li-Chia Kuo"
+  ],
+  "abstract": "一家全球製造企業歷經多年漸進式轉型：400+ 應用上雲、整合跨 100 座工廠的數據孤島、完成 shop floor 系統現代化。本場次拆解三大階段的實務做法，涵蓋大規模遷移的組織變革與決策框架、應用現代化帶來的 67–83% 部署加速與 74% 資料處理時間縮減，以及如何在穩固基礎上一週內落地生成式 AI 產線助手。帶走一套製造業從遷移到 AI 創新的分階段 playbook。"
+ },
+ {
+  "code": "SEC02",
+  "title": "AWS Security Agent & CyCraft XecGuard：建構企業級 Agentic AI 安全防線",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Application Security",
+   "Automation",
+   "Culture of Security",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [
+   "AWS Security Agent"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "11:30",
+  "end": "12:15",
+  "startMin": 690,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Scott Liao",
+   "Birdman Chiu"
+  ],
+  "abstract": "本場次將解析 Agentic AI 的新興威脅，並介紹 AWS Security Agent 如何透過 AI 自動化安全審查與主動式防護強化應用安全；同時分享 CyCraft XecGuard 如何結合 AWS Guardrail API，提供 Prompt Attack 防護、風險偵測與 AI 安全治理能力，協助企業建立可控、可管、可驗證的 Agentic AI 安全防護架構。"
+ },
+ {
+  "code": "AIML06",
+  "title": "透過 AWS 客製化 AI 晶片打破效能與成本的瓶頸：Tomofun 如何使用 AWS Inferentia2 把成本減少 83%（Break through AI performance and cost barriers with AWS custom AI chips: How do Tomofun reduce costs by 83%）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [],
+  "services": [
+   "Amazon CloudWatch",
+   "AWS Application Cost Profiler",
+   "AWS Billing and Cost Management",
+   "AWS Inferentia",
+   "AWS Trainium"
+  ],
+  "roles": [
+   "Business Executive",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Customer story"
+  ],
+  "room": "3F 大會堂",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Howard Su",
+   "Ricky Chou"
+  ],
+  "abstract": "在 AWS 上打造永續、高效益的生成式 AI，關鍵在於架構效率、雲端原生最佳化，以及 AWS 自研 AI 晶片所構成的基礎設施。Trainium 與 Inferentia2 晶片帶來更佳的每瓦效能，搭配自動擴���、批次處理與 Spot 執行個體，有效避免資源閒置浪費。本場次透過真實客戶案例，拆解成本最佳化策略與高效能生成式 AI 工作負載的建構方法，並結合 CloudWatch 與 Cost Explorer 的監控實踐，示範如何同時實現高效能與低碳排的生成式 AI 解決方案。最後我們帶來 Tomofun 的案例，看看他們如何透過 AWS Inferentia2 減少成本超過 83%。(Building sustainable, cost-effective generative AI on AWS requires efficient architecture, cloud-native optimization, and AI infrastructure built on AWS custom AI chips. Efficiency increases through AWS's Trainium and Inferentia2 silicon (50% better performance per watt). Auto-scaling, batch processing, and spot instances prevent over-provisioning. Through real customer examples, see how to optimize costs, and build high-performance generative AI workloads. Combined with CloudWatch and Cost Explorer monitoring, this approach delivers high-performance, low-carbon generative AI solutions. Finally, Tomofun will bring their reference case to show how do they reduce costs by 83% with AWS Inferentia2.)"
+ },
+ {
+  "code": "DBA02",
+  "title": "與 OLTP 共存：MaiCoin 以 Apache Iceberg 打造的 Unified Data Platform（Alongside the OLTP System: MaiCoin's Unified Data Platform on Apache Iceberg）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Data Protection",
+   "Well-Architected Framework",
+   "Automation",
+   "DevOps"
+  ],
+  "services": [
+   "Amazon Simple Storage Service (Amazon S3)"
+  ],
+  "roles": [],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Johnny Yu",
+   "Leo Wang"
+  ],
+  "abstract": "MaiCoin 的加密貨幣交易所 24/7 全天候運轉，為在不干擾來源系統的前提下建立分析層，設計了 Unified Data Platform：透過 CDC 將營運資料庫變更即時串流至 Amazon S3 上的 Apache Iceberg tables，形成與 system of record 同步的開放格式分析底座。本場次分享整體架構、CDC pipeline 選型、24/7 工作負載下的 schema 演進策略，以及在交易所規模下維運 Iceberg 資料平台的實務經驗。"
+ },
+ {
+  "code": "FINTECH01",
+  "title": "【FINTECH 專場】Web3 規模化落地實戰：打造去中心化經濟的關鍵基石 (Powering Web3 at Scale: Building Blocks for the Decentralized Economy)",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 102",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "200",
+  "speakers": [
+   "Ariel Cheng",
+   "Lucas Chen"
+  ],
+  "abstract": "本場議程首先介紹 AWS 上的 Web3 關鍵基礎服務 — 從 Amazon Managed Blockchain 的託管節點存取、Blockchain Node Runners 的彈性自建部署，到 Nitro Enclaves 為加密金鑰與敏感運算提供硬體層級隔離保護，完整涵蓋企業級區塊鏈基礎設施所需的安全性、可擴展性與合規能力。隨後，我們邀請區塊科技股份有限公司（Blockchain Security Corp.）分享其區塊鏈節點上雲的實戰經驗：如何運用 AWS 實現節點的雲端原生部署與彈性擴展，並透過 Nitro Enclaves 建立可信執行環境 — 將原本受限於地端固定容量的節點架構，轉化為可隨鏈上需求動態伸縮的雲原生基礎設施。 (This session begins with an overview of AWS's core Web3 building blocks — from Amazon Managed Blockchain for managed node access and Blockchain Node Runners for flexible self-hosted deployments, to Nitro Enclaves providing hardware-level isolation for cryptographic keys and sensitive workloads — covering the security, scalability, and compliance capabilities required for enterprise blockchain infrastructure. We then invite Blockchain Security Corp. to share their hands-on experience migrating blockchain nodes to the cloud: how they leveraged AWS for cloud-native node deployment and elastic scaling, and used Nitro Enclaves to establish trusted execution environments — transforming a capacity-constrained on-premises node architecture into a dynamically scalable, cloud-native infrastructure that adapts to on-chain demand.)"
+ },
+ {
+  "code": "LT-005",
+  "title": "如何透過 AWS Nitro Enclaves 安全機制來保護你的 LLM 推論",
+  "type": "Lightning talk",
+  "level": "100 - Foundational",
+  "topic": "Security, Compliance, & Identity",
+  "areas": [
+   "Application Security"
+  ],
+  "services": [],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "13:55",
+  "startMin": 810,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Ray Lin"
+  ],
+  "abstract": "在 AI 與雲端全面落地的時代，真正的資安挑戰已從「資料儲存與傳輸」延伸到「資料使用中」。當敏感資料進入記憶體處理時，如何確保即使系統管理員或雲端平台也無法存取？這正是機密運算（Confidential Computing）要解決的關鍵問題。 本次演講將從資料三態的安全風險出發，解析機密運算的核心概念與可信任執行環境（TEE）運作原理，並以 AWS Nitro Enclaves 為實務主軸，說明如何建立硬體隔離的安全運算環境，保護 LLM 推論與敏感資料處理。"
+ },
+ {
+  "code": "MIG02",
+  "title": "Microsoft 工作負載上雲實戰：AWS 2026 遷移路線圖（AWS migration journey: 2026 itinerary for Microsoft workloads）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "VMware",
+   "Microsoft & .NET"
+  ],
+  "services": [
+   "AWS Microservice Extractor for .NET",
+   "Amazon Elastic VMware Service (EVS)"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "George Chang"
+  ],
+  "abstract": "時間緊迫：Windows Server 2016 延伸支援將於 2027 年 1 月 12 日正式終止，台灣製造業僅剩不到 12 個月完成關鍵工作負載的遷移。本場次彙整三年 AWS Support Engineering 實戰經驗，針對六大 Microsoft 工作負載提供具體的現代化路徑：Active Directory、SQL 資料庫、伺服器與虛擬機器、檔案儲存、網頁應用程式，以及 Windows 容器。深入探討 AWS MGN、Amazon EVS、AWS Managed Microsoft AD Hybrid Edition 與 Porting Assistant for .NET 的遷移方案，並完整涵蓋台北區域的服務支援。帶走六大工作負載的逐步遷移 Playbook，即刻啟動轉型行動。"
+ },
+ {
+  "code": "SEC01",
+  "title": "Kiro 企業導入實戰：IAM Identity Center 部署手冊（Kiro enterprise rollout in practice: the IAM Identity Center playbook）",
+  "type": "Breakout session",
+  "level": "200 - Intermediate",
+  "topic": "Architecture",
+  "areas": [
+   "Application Security",
+   "Culture of Security",
+   "Agentic AI",
+   "Identity & Access Management"
+  ],
+  "services": [
+   "AWS IAM Identity Center",
+   "AWS Identity and Access Management (IAM)",
+   "Kiro"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "14:15",
+  "startMin": 810,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Rory Custance"
+  ],
+  "abstract": "在企業導入 Kiro 時，身分驗證往往是第一道關卡：Kiro 不支援長效 IAM 使用者，因此組織必須先完成遷移至 AWS IAM Identity Center，才能大規模推展。本場次以 AWS Support Engineering 的真實案例為基礎，梳理三條遷移路徑，涵蓋長效 IAM 使用者、Okta 與 Azure AD 等外部身分提供者，以及舊版 SAML 聯盟。並比較 Organization 與 Account 執行個體在多帳號範疇、90 天開發者工作階段與可重用權限集方面的差異。帶走的不只是遷移檢查清單與決策框架，更是推動 Kiro 落地所需的身分管理基礎。"
+ },
+ {
+  "code": "WKS-003",
+  "title": "Kiro CLI × EKS Auto Mode：從零開始打造你的 AI Kubernetes 維運助手",
+  "type": "Workshop",
+  "level": "300 - Advanced",
+  "topic": "Artificial Intelligence",
+  "areas": [
+   "Generative AI",
+   "Agentic AI",
+   "DevOps"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "Kiro"
+  ],
+  "roles": [
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [
+   "Hands-on",
+   "Laptop required"
+  ],
+  "room": "Room 103",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:30",
+  "end": "16:30",
+  "startMin": 810,
+  "length": 180,
+  "capacity": "80",
+  "speakers": [
+   "Jeremy Lin",
+   "Sypher Su"
+  ],
+  "abstract": "AI 正在重新定義軟體開發與維運的方式。本工作坊將帶您深入體驗 Kiro CLI — AWS 推出的終端機原生 AI 開發工具，結合 Steering（行為準則）、Skills（Agent 技能） 與 MCP Servers（外部工具整合） 三大核心機制，實現對 Kubernetes 叢集的 AI 驅動式維運。在本工作坊中，您將：認識 Kiro CLI 核心架構：了解 Steering files 如何定義 agent 行為規範、Skills 如何封裝可重複執行的維運技能、MCP 如何讓 AI agent 即時連接外部工具與資料安裝與設定 MCP Servers：將 Amazon EKS MCP Server 連接至 Kiro CLI，讓 AI agent 具備叢集感知能力 — 用自然語言查詢 Pod 狀態、部署應用、診斷故障 Hands-on Lab — AI-Powered Kubernetes Ops on EKS Auto Mode：從叢集建立、應用部署、自動擴展，到故障排除，全程在終端機中以 Kiro CLI 對話完成快速了解 Claude Code 在 AWS 上的選項（10–15 分鐘）：Claude on Amazon Bedrock、Claude Platform on AWS、Claude for Enterprise 三種企業部署方案"
+ },
+ {
+  "code": "LT-006",
+  "title": "連 HR 也能上手！用 Kiro 快速打造 HR 的 AI 小幫手",
+  "type": "Lightning talk",
+  "level": "100 - Foundational",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Kiro"
+  ],
+  "roles": [
+   "Sales / Marketing"
+  ],
+  "industries": [],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "13:55",
+  "end": "14:20",
+  "startMin": 835,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Hui-Ju Cheng"
+  ],
+  "abstract": "在 AI 快速發展的時代，打造專屬 AI 工具已不再是工程師的專利。本場分享將以 HR 的實務場景出發，帶領你了解如何運用 AWS 的生成式 AI 工具 Kiro，快速打造屬於自己的 AI 小幫手。從需求發想、流程設計，到 AI 協助生成內容與自動化任務，HR 也能在無需深厚技術背景的情況下，建立能實際應用於工作中的 AI 解決方案。這不只是一場工具介紹，更是一個讓非技術職能重新掌握生產力的起點。"
+ },
+ {
+  "code": "LT-007",
+  "title": "設計金融交易系統的 Amazon Aurora 彈性架構 -- 突破效能瓶頸並實現成本優化",
+  "type": "Lightning talk",
+  "level": "300 - Advanced",
+  "topic": "Analytics",
+  "areas": [
+   "Data Protection"
+  ],
+  "services": [
+   "Amazon Aurora"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Community-led"
+  ],
+  "room": "2F Developer Community Zone",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "14:20",
+  "end": "14:45",
+  "startMin": 860,
+  "length": 25,
+  "capacity": "35",
+  "speakers": [
+   "Glory FU"
+  ],
+  "abstract": "當您的單表數據突破 800GB、總行數超過 20 億時，資料庫架構的每一毫秒延遲都決定了業務的成敗。這次我們將深入 Aurora 的底層分散式特性，並分享一套在極端高壓環境下穩定運行的實戰架構。 我們只談實戰。深入解析如何透過 CLI 精準配置 Custom Endpoints，並靈活運用 Serverless v2 隔離地獄級查詢壓力。 帶走這份 「Aurora 效能優化檢查清單」 ，讓您的數據架構不僅僅是 「堪用」 ，而是具備應對未來百倍增長的 「極致彈性」 。"
+ },
+ {
+  "code": "FINTECH02",
+  "title": "【FINTECH 專場】從地端到 AI：在 AWS 上擴展行情數據並以 Multi-Agent AI 重塑策略回測 (From On-Prem to Agentic: Scaling Market Data on AWS and Reinventing Backtesting with Multi-Agent AI)",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 102",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "14:25",
+  "end": "15:05",
+  "startMin": 865,
+  "length": 40,
+  "capacity": "200",
+  "speakers": [
+   "Jacky Wu",
+   "Charlie Chiu"
+  ],
+  "abstract": "本場議程探討一家全球證券金融科技業者如何將其即時市場數據平台從地端遷移至 AWS — 實現低於 100 毫秒的全球延遲，並將新區域上線時間從數週縮短至分鐘級。在此雲原生數據基礎之上，我們展示如何利用 Amazon Bedrock 上的Multi-Agents AI 重新定義量化回測：智能體自主獲取即時行情、生成交易策略、執行回測並評估結果 — 將原本需要大量手動編碼的流程轉化為對話式、可迭代的智能體驗。 (This session explores how a global securities fintech provider migrated its real-time market data platform from on-premises to AWS — achieving sub-100ms global latency and reducing new region deployment from weeks to minutes. Building on this cloud-native data foundation, we demonstrate how multi-agent AI on Amazon Bedrock reinvents quantitative backtesting: agents autonomously fetch live quotes, generate trading strategies, execute backtests, and evaluate results — transforming a manual, code-heavy workflow into a conversational, iterative experience.)"
+ },
+ {
+  "code": "AIML08",
+  "title": "如何透過 AWS 服務，讓你的網站平順地轉化為 Ai-Engine 友善 (GEO) ，讓 GEO 更願意為你引流（How to Drive GEO-Powered Traffic to Your Digital Channels on AWS）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Generative AI",
+   "Automation",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "Amazon CloudFront"
+  ],
+  "roles": [
+   "Advisor / Consultant",
+   "Business Executive",
+   "Developer / Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "3F 大會堂",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Kenex Huang"
+  ],
+  "abstract": "本 Guidance 展示如何運用 Generative Engine Optimization、Amazon CloudFront 與 Amazon Bedrock AgentCore，提升網站、App 與 AI 驅動探索通路的可見度，幫助客戶從現代搜尋、推薦與生成式 AI 體驗中吸引高意圖流量"
+ },
+ {
+  "code": "DBA03",
+  "title": "打造數位韌性：以 AWS 台北區域為核心的跨區域 HA/DR 架構設計，Oracle、SQL Server 與 Amazon Aurora 實踐（Building Digital Resilience: Cross-Region HA/DR Architecture Centered on the Taipei Region, with Practices for Oracle, SQL Server, and Amazon Aurora）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Data Protection",
+   "Oracle"
+  ],
+  "services": [
+   "Amazon Aurora",
+   "Amazon Aurora for PostgreSQL",
+   "Amazon Aurora DSQL",
+   "Oracle Database@AWS"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Jack Hsu",
+   "Taylor Chu"
+  ],
+  "abstract": "本場次聚焦以 AWS 台北區域為核心的跨區域高可用性與災難復原架構設計，涵蓋 Oracle、SQL Server 與 Amazon Aurora 的實戰指引。了解如何設計具備韌性的多區域拓撲、比較不同資料庫引擎的 HA 與 DR 取捨，並套用經實證的架構模式，達成業務所要求的可用性與復原目標。"
+ },
+ {
+  "code": "FINTECH03",
+  "title": "【FINTECH 專場】當 AI 讀懂新聞情緒：Agentic AI 如何為高頻交易打開全新視野 (How FSI Revolutionized HFT Analytics with Agentic AI-Powered News Sentiment Analysis)",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [],
+  "room": "Room 102",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "15:15",
+  "end": "15:55",
+  "startMin": 915,
+  "length": 40,
+  "capacity": "200",
+  "speakers": [
+   "David Sung"
+  ],
+  "abstract": "以研究為導向的量化分析平台，專注於計算金融與市場微結構領域，探討了金融機器學習中的一項關鍵挑戰：傳統大型語言模型在分析高維度市場數據與時序價格序列（應用於高頻交易場景）時所存在的固有偏差。本案例研究提出一種新型的 Agentic AI 架構，結合 AI 驅動的新聞情緒分析，無需傳統模型微調即可快速部署進階量化策略。該方案整合 Claude 模型於 Bedrock 中進行階層式任務分解與推理。本場 Level 300 技術深度議程將呈現實證結果、架構模式，以及使用 Bedrock 多模型能力的可重現 Demo，推動生成式 AI 在量化金融領域的實務應用與討論。 (A research-focused quantitative analytics platform specializing in computational finance and market microstructure investigated a key challenge in financial machine learning: the inherent bias of traditional LLMs when analyzing high-dimensional market data and temporal price series for high-frequency trading applications. This case study explores a novel agentic AI architecture that leverages AI-powered news sentiment analysis to eliminate conventional model fine-tuning needs, enabling rapid deployment of advanced quantitative strategies. The solution integrates Claude models for hierarchical task decomposition and reasoning in Bedrock. This Level 300 session presents empirical results, architectural patterns, and reproducible demos using Bedrock's multi-model capabilities, advancing applied AI discourse in quantitative finance.)"
+ },
+ {
+  "code": "MIG03",
+  "title": "運用 Agentic AI 加速遷移 VMware 工作負載（Accelerate migration of VMware workloads using Agentic AI）",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "",
+  "areas": [],
+  "services": [],
+  "roles": [],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "15:15",
+  "end": "16:00",
+  "startMin": 915,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Hung-Che Jen",
+   "Charlotte Yu"
+  ],
+  "abstract": "本場次深入拆解 AWS Transform 的伺服器遷移完整生命週期，探索其 AI 代理程式如何自動化遷移歷程，涵蓋本地環境智慧探索、AI 生成的波次計畫與網路架構規劃，並透過生成式 AI 實現基礎設施即程式碼與網路轉換的自動化。透過真實遷移情境演示，帶走可立即上手的 AI 增強遷移技巧，將業務衝擊降至最低。"
+ },
+ {
+  "code": "FINTECH04",
+  "title": "【FINTECH 專場】分析如團隊，交易如機器 — Amazon Quick資本市場應用 (Analyze Like a Team. Trade Like a Machine. — Amazon Quick for Capital Markets)",
+  "type": "Breakout session",
+  "level": "",
+  "topic": "AI/ML",
+  "areas": [],
+  "services": [
+   "Amazon Quick"
+  ],
+  "roles": [
+   "Business Executive",
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [
+   "Financial Services"
+  ],
+  "features": [
+   "Customer story"
+  ],
+  "room": "Room 102",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "16:05",
+  "end": "16:45",
+  "startMin": 965,
+  "length": 40,
+  "capacity": "200",
+  "speakers": [
+   "Charlie Chiu",
+   "Jackal Lee",
+   "Ricky Fong"
+  ],
+  "abstract": "本場議程展示 Amazon Quick 如何轉變資本市場工作流程 — 從消化數千頁財報逐字稿與市場新聞產出可行動的研究洞察，到自動生成投資備忘錄與每日例行簡報。接著我們將示範如何透過 MCP 串接交易所的鏈上交易能力，讓 AI Agent 根據分析結果直接執行交易，實現完整的 AI 投資閉環：研究 → 分析 → 報告 → 執行 → 監控。 (This session showcases how Amazon Quick transforms capital markets workflows — from consuming thousands of pages of earnings transcripts and market news into actionable research, to generating investment memos and automated daily briefings. We then demonstrate how integrating exchange's trading capabilities via MCP enables AI agents to execute trades directly from analysis results, completing the full investment loop: Research → Analysis → Report → Execution → Monitoring. )"
+ },
+ {
+  "code": "AIML07",
+  "title": "大規模多代理人架構：打造關鍵任務 AI 的核心設計模式（Scaling multi-agent architectures: Patterns for mission-critical AI）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock"
+  ],
+  "roles": [
+   "Developer / Engineer",
+   "Entrepreneur (Founder/Co-Founder)",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "3F 大會堂",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "4200",
+  "speakers": [
+   "Wei-Chiao Lee"
+  ],
+  "abstract": "本場次將帶您深入 AWS 多代理人 AI 系統的架構設計，從代理人分工、知識檢索到協調共識，透過 Strands Agent SDK 與 Bedrock AgentCore 的實戰範例，掌握在企業環境中落地關鍵任務系統的核心思路與決策依據。"
+ },
+ {
+  "code": "DBA04",
+  "title": "智慧搜尋 × 成本最佳化：用 AI 重新定義企業搜尋體驗（Intelligent Search Meets Cost Optimization: Redefining Enterprise Search with AI）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "Architecture",
+  "areas": [
+   "Well-Architected Framework",
+   "Cost Optimization",
+   "DevOps"
+  ],
+  "services": [
+   "Amazon OpenSearch Service"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201ABC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Annie Chang",
+   "Motica Wang"
+  ],
+  "abstract": "探索 Amazon OpenSearch 最新向量資料庫功能，了解如何運用語義搜尋、代理式 AI 與智慧推薦系統，打造「搜得到、搜得準、搜得快」的智慧搜尋體驗——無論是內部知識檢索、客戶自助服務、還是海量資料探索，都能同時大幅降低搜尋基礎設施的營運成本。"
+ },
+ {
+  "code": "MIG04",
+  "title": "AI 戰略成功從現代化開始 — 從 Oracle 轉向開源資料庫的數據自由（From Oracle to Open Source: The Database Modernization Path to AI-Ready Data Freedom）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Data Protection",
+   "Open Data",
+   "Oracle",
+   "Well-Architected Framework",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "AWS Database Migration Service (AWS DMS)"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Data Engineer",
+   "Data Scientist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 201DEF",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "280",
+  "speakers": [
+   "Sharon Chien",
+   "Yu Ting Su"
+  ],
+  "abstract": "Oracle 現代化的挑戰不只是資料搬遷，商業邏輯、嵌入式 SQL 與系統相依性的處理，過去往往需要 DBA 與應用團隊耗費大量時間逐項評估改寫。本場次介紹 AWS 如何以生成式 AI 加速這段轉換流程：DMS Schema Conversion 負責 schema 轉換與相容性評估、Amazon Bedrock 補強複雜轉換情境、Kiro 掃描並改寫應用層 SQL 與資料庫連線設定，最終由 DMS 完成資料遷移與驗證。同時帶您了解 Oracle 到開源資料庫的常見轉換差異、AI 工具在各層的協助範圍，以及何時應保留人工審視，協助您找到一條可行的現代化路徑。"
+ },
+ {
+  "code": "SEC04",
+  "title": "為您的 Cognito 應用打造 AI 驅動的安全守護機制（Building an AI-Powered security guardian for your Cognito applications）",
+  "type": "Breakout session",
+  "level": "300 - Advanced",
+  "topic": "AI/ML",
+  "areas": [
+   "Application Security",
+   "Network & Infrastructure Security",
+   "Automation",
+   "Culture of Security",
+   "Agentic AI"
+  ],
+  "services": [
+   "Amazon Bedrock",
+   "Amazon Cognito"
+  ],
+  "roles": [
+   "Cloud Security Specialist",
+   "Developer / Engineer",
+   "DevOps Engineer",
+   "IT Administrator",
+   "IT Executive",
+   "IT Professional / Technical Manager",
+   "Solution / Systems Architect",
+   "System Administrator",
+   "Tech Explorer"
+  ],
+  "industries": [],
+  "features": [],
+  "room": "Room 101BC",
+  "date": "2026-07-16",
+  "dayName": "Thursday",
+  "dayDisplay": "7/16",
+  "start": "16:15",
+  "end": "17:00",
+  "startMin": 975,
+  "length": 45,
+  "capacity": "220",
+  "speakers": [
+   "Ian Chen"
+  ],
+  "abstract": "瞭解如何以 Amazon Bedrock AgentCore 為基礎，為 Amazon Cognito 驗證的應用建構 AI 驅動的安全守護機制。本場次涵蓋身分安全最佳實踐、偵測分析，以及自動化防禦措施，包括動態 WAF 規則調整、驗證流程修改與 SOC 操作。歡迎帶著您的問題與場景，與我們深入探討 Cognito 應用的 AI 驅動安全控制實作。"
+ }
+];
+const GEN = "2026/06/23";
+</script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const typeClass=t=>({'Keynote':'Keynote','Breakout session':'Breakout','Workshop':'Workshop','Lightning talk':'Lightning','Exam prep':'Exam','Gamified learning':'Gamified','Code talk':'Code'}[t]||'Code');
+const typeShort=t=>({'Keynote':'主題演講','Breakout session':'Breakout','Workshop':'Workshop','Lightning talk':'Lightning Talk','Exam prep':'考前衝刺','Gamified learning':'遊戲化學習','Code talk':'Code Talk'}[t]||t);
+const lvClass=l=>l.startsWith('100')?'l1':l.startsWith('200')?'l2':l.startsWith('300')?'l3':l.startsWith('400')?'l4':'';
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let state={day:DATA[0]?DATA[0].date:'',view:'timeline',q:'',types:[],topic:'',level:'',room:''};
+
+// ---- init meta ----
+$('#kTotal').textContent=DATA.length;
+$('#genTime').textContent=GEN;
+const days=[...new Map(DATA.map(d=>[d.date,d])).values()].map(d=>({date:d.date,name:d.dayName,disp:d.dayDisplay}));
+function dayLabel(d){const z={Wednesday:'週三',Thursday:'週四',Monday:'週一',Tuesday:'週二',Friday:'週五'}[d.name]||d.name;return d.disp+'（'+z+'）';}
+
+// KPIs
+const byType=t=>DATA.filter(d=>d.type===t).length;
+const kpis=[['議程總數',DATA.length],['活動天數',days.length],['Breakout',byType('Breakout session')],['Workshop',byType('Workshop')],['Lightning Talk',byType('Lightning talk')]];
+$('#kpis').innerHTML=kpis.map(k=>`<div class="kpi"><div class="n">${k[1]}</div><div class="l">${k[0]}</div></div>`).join('');
+
+// tabs
+function renderTabs(){
+  $('#dayTabs').innerHTML=days.map(d=>`<button class="tab ${state.day===d.date?'active':''}" data-d="${d.date}">${dayLabel(d)}<span class="c">${DATA.filter(x=>x.date===d.date).length}</span></button>`).join('');
+  $$('#dayTabs .tab').forEach(b=>b.onclick=()=>{state.day=b.dataset.d;renderTabs();render();});
+}
+
+// filters
+function fillSel(id,key){
+  const vals=[...new Set(DATA.map(d=>d[key]).filter(Boolean))].sort();
+  const el=$(id);vals.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o);});
+}
+fillSel('#fTopic','topic');fillSel('#fLevel','level');fillSel('#fRoom','room');
+
+// type checkboxes (multi-select), ordered by frequency
+const typeOrder=[...new Set(DATA.map(d=>d.type))].sort((a,b)=>DATA.filter(x=>x.type===b).length-DATA.filter(x=>x.type===a).length);
+function renderTypeChecks(){
+  const host=$('#typeChecks');
+  host.querySelectorAll('.chk').forEach(n=>n.remove());
+  typeOrder.forEach(t=>{
+    const n=DATA.filter(x=>x.type===t).length;
+    const on=state.types.includes(t);
+    const lab=document.createElement('label');
+    lab.className='chk'+(on?' on':'')+' c-'+typeClass(t);
+    lab.innerHTML=`<input type="checkbox" ${on?'checked':''}><span class="dot" style="background:var(--${({Keynote:'kw',Breakout:'break',Workshop:'work',Lightning:'light'}[typeClass(t)])||'other'})"></span>${typeShort(t)} <span style="color:var(--muted);font-weight:700">${n}</span>`;
+    lab.querySelector('input').onchange=e=>{
+      if(e.target.checked){if(!state.types.includes(t))state.types.push(t);}
+      else state.types=state.types.filter(x=>x!==t);
+      lab.classList.toggle('on',e.target.checked);
+      render();
+    };
+    host.appendChild(lab);
+  });
+}
+renderTypeChecks();
+
+$('#q').oninput=e=>{state.q=e.target.value.toLowerCase();render();};
+$('#fTopic').onchange=e=>{state.topic=e.target.value;render();};
+$('#fLevel').onchange=e=>{state.level=e.target.value;render();};
+$('#fRoom').onchange=e=>{state.room=e.target.value;render();};
+$('#clear').onclick=()=>{state.q=state.topic=state.level=state.room='';state.types=[];$('#q').value='';['#fTopic','#fLevel','#fRoom'].forEach(s=>$(s).value='');renderTypeChecks();render();};
+$('#vTimeline').onclick=()=>setView('timeline');
+$('#vTable').onclick=()=>setView('table');
+function setView(v){state.view=v;$('#vTimeline').classList.toggle('on',v==='timeline');$('#vTable').classList.toggle('on',v==='table');render();}
+
+function matchFilters(d){
+  if(state.types.length&&!state.types.includes(d.type))return false;
+  if(state.topic&&d.topic!==state.topic)return false;
+  if(state.level&&d.level!==state.level)return false;
+  if(state.room&&d.room!==state.room)return false;
+  if(state.q){
+    const hay=[d.title,d.code,d.abstract,d.type,d.topic,d.room,...d.speakers,...d.services,...d.areas,...d.industries].join(' ').toLowerCase();
+    if(!hay.includes(state.q))return false;
+  }
+  return true;
+}
+
+function cardHTML(d,i){
+  const tags=[d.topic?`<span class="tag topic">${esc(d.topic)}</span>`:'',...d.areas.slice(0,3).map(a=>`<span class="tag">${esc(a)}</span>`)].join('');
+  const spk=d.speakers.length?`<div class="spk"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>${esc(d.speakers.join('、'))}</div>`:'';
+  return `<div class="card t-${typeClass(d.type)}" data-i="${i}">
+    <div class="crow"><div class="badges">
+      <span class="code">${esc(d.code)}</span>
+      <span class="pill type type-${typeClass(d.type)}">${typeShort(d.type)}</span>
+      ${d.level?`<span class="pill lv ${lvClass(d.level)}">${esc(d.level)}</span>`:''}
+    </div></div>
+    <div class="title">${esc(d.title)}</div>
+    <div class="meta">
+      <span><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/></svg>${esc(d.room)}</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 11h-3V6h2v5h3z"/></svg>${d.start}–${d.end}</span>
+    </div>
+    ${tags?`<div class="tags">${tags}</div>`:''}
+    ${spk}
+    <div class="abs">${esc(d.abstract)}</div>
+  </div>`;
+}
+
+function renderTimeline(rows){
+  const slots={};
+  rows.forEach((d)=>{const k=d.start+'|'+d.end;(slots[k]=slots[k]||[]).push(d);});
+  const keys=Object.keys(slots).sort((a,b)=>{const A=slots[a][0],B=slots[b][0];return A.startMin-B.startMin || (a<b?-1:1);});
+  let html='';
+  keys.forEach(k=>{
+    const list=slots[k];const f=list[0];
+    html+=`<div class="slot"><div class="slot-h">
+      <div class="slot-time">${f.start} <span class="end">→ ${f.end}</span></div>
+      <div class="slot-line"></div><div class="slot-cnt">${list.length} 場</div></div>
+      <div class="grid">${list.map(d=>cardHTML(d,d._i)).join('')}</div></div>`;
+  });
+  return html;
+}
+
+function renderTable(rows){
+  let html=`<div class="tbl-wrap"><table id="tbl"><thead><tr>
+    <th data-k="code">代碼</th><th data-k="date">日期</th><th data-k="startMin">時間</th>
+    <th data-k="type">類型</th><th data-k="title">議程標題</th><th data-k="topic">主題</th>
+    <th data-k="level">難度</th><th data-k="room">會議室</th><th data-k="spk">講者</th></tr></thead><tbody>`;
+  let curDay='';
+  rows.forEach(d=>{
+    if(d.date!==curDay){curDay=d.date;const dd=days.find(x=>x.date===d.date);html+=`<tr class="day-sep"><td colspan="9">📅 ${dayLabel(dd)}</td></tr>`;}
+    html+=`<tr data-i="${d._i}" style="cursor:pointer">
+      <td class="c">${esc(d.code)}</td><td class="tm">${d.dayDisplay}</td><td class="tm">${d.start}–${d.end}</td>
+      <td><span class="pill type type-${typeClass(d.type)}" style="font-size:10px">${typeShort(d.type)}</span></td>
+      <td><b>${esc(d.title)}</b></td><td>${esc(d.topic||'—')}</td>
+      <td>${d.level?`<span class="pill lv ${lvClass(d.level)}" style="font-size:10px">${esc(d.level.replace(/ - .*/,'').replace(/ –.*/,''))}</span>`:'—'}</td>
+      <td>${esc(d.room)}</td><td style="font-size:12px;color:var(--muted)">${esc(d.speakers.join('、')||'—')}</td></tr>`;
+  });
+  return html+'</tbody></table></div>';
+}
+
+let tableSort={k:'startMin',asc:true};
+function render(){
+  let rows=DATA.map((d,i)=>({...d,_i:i})).filter(matchFilters);
+  $('#resultline').innerHTML=`符合條件 <b>${rows.length}</b> 場${state.view==='timeline'?'（僅顯示 '+dayLabel(days.find(x=>x.date===state.day))+'）':'（全部日期）'}`;
+  const tl=$('#timeline'),tv=$('#tableview'),em=$('#empty');
+  if(state.view==='timeline'){
+    tl.classList.remove('hide');tv.classList.add('hide');
+    const dayRows=rows.filter(d=>d.date===state.day);
+    if(!dayRows.length){tl.innerHTML='';em.classList.remove('hide');}
+    else{em.classList.add('hide');tl.innerHTML=renderTimeline(dayRows);}
+    bindCards();
+  }else{
+    tl.classList.add('hide');
+    if(!rows.length){tv.classList.add('hide');em.classList.remove('hide');return;}
+    em.classList.add('hide');tv.classList.remove('hide');
+    rows.sort((a,b)=>{const k=tableSort.k;let r=k==='startMin'?(a.date+a.startMin.toString().padStart(5,'0')).localeCompare(b.date+b.startMin.toString().padStart(5,'0')):(''+a[k]).localeCompare(''+b[k],'zh');return tableSort.asc?r:-r;});
+    tv.innerHTML=renderTable(rows);
+    $$('#tbl th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(tableSort.k===k)tableSort.asc=!tableSort.asc;else{tableSort.k=k;tableSort.asc=true;}render();});
+    $$('#tbl tbody tr[data-i]').forEach(tr=>tr.onclick=()=>openModal(+tr.dataset.i));
+  }
+}
+function bindCards(){$$('.card').forEach(c=>c.onclick=()=>openModal(+c.dataset.i));}
+
+function openModal(i){
+  const d=DATA[i];
+  const tags=[d.topic,...d.areas].filter(Boolean).map(t=>`<span class="tag topic">${esc(t)}</span>`).join('');
+  const svc=d.services.map(s=>`<span class="tag">${esc(s)}</span>`).join('');
+  const feat=d.features.map(s=>`<span class="tag" style="background:#FFF4E0;color:#9A6400">${esc(s)}</span>`).join('');
+  const dd=days.find(x=>x.date===d.date);
+  $('#modal').innerHTML=`<div class="mh">
+    <button class="close" onclick="document.getElementById('ov').classList.remove('show')">×</button>
+    <div class="badges"><span class="code" style="color:#cdd8e6">${esc(d.code)}</span>
+      <span class="pill type type-${typeClass(d.type)}">${typeShort(d.type)}</span>
+      ${d.level?`<span class="pill lv ${lvClass(d.level)}">${esc(d.level)}</span>`:''}</div>
+    <h2>${esc(d.title)}</h2></div>
+    <div class="mb">
+      <div class="mmeta">
+        <span>📅 <b>${dayLabel(dd)}</b></span>
+        <span>🕐 <b>${d.start}–${d.end}</b>（${d.length} 分鐘）</span>
+        <span>📍 <b>${esc(d.room)}</b></span>
+        ${d.capacity&&d.capacity!=='0'?`<span>👥 ${esc(d.capacity)} 席</span>`:''}
+      </div>
+      ${d.speakers.length?`<div class="sect">講者</div><div class="ab">${esc(d.speakers.join('、'))}</div>`:''}
+      <div class="sect">議程說明</div><div class="ab">${esc(d.abstract)||'（無說明）'}</div>
+      ${tags?`<div class="sect">主題 / 關注領域</div><div class="tags">${tags}</div>`:''}
+      ${svc?`<div class="sect">相關 AWS 服務</div><div class="tags">${svc}</div>`:''}
+      ${feat?`<div class="sect">議程特色</div><div class="tags">${feat}</div>`:''}
+    </div>`;
+  $('#ov').classList.add('show');
+}
+$('#ov').onclick=e=>{if(e.target.id==='ov')$('#ov').classList.remove('show');};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#ov').classList.remove('show');});
+
+renderTabs();render();
+</script>
+</body>
+</html>
